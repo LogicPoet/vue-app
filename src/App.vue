@@ -4,8 +4,10 @@
     <mt-header fixed title="练习·Vue项目"></mt-header>
 
     <!-- 中间的 路由 router-view 区域 -->
-    <router-view></router-view>
-
+    <transition mode="out-in">
+     <router-view></router-view>
+    </transition>
+   
     <!-- 底部 Tabbar 区域 -->
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/home">
@@ -41,6 +43,22 @@
 // 防止顶端固定标题挡住中间的区域
 .app-container {
   padding-top: 40px;
-  overflow-x: hidden;
+  overflow-x: hidden;//隐藏组件切换时出现的横向滚动条
+}
+
+// 组件滑动样式
+.v-enter{//从右边进入
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to{//从左边离开
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;//绝对布局
+}
+
+.v-enter-active,
+.v-leave-active{
+  transition: all 0.5s ease;
 }
 </style>
