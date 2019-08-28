@@ -4,9 +4,8 @@
     <mt-header fixed title="练习·Vue项目"></mt-header>
 
     <!-- 中间的 路由 router-view 区域 -->
-    <h2>123
-      
-    </h2>
+    <router-view></router-view>
+
     <!-- 底部 Tabbar 区域 -->
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/home">
