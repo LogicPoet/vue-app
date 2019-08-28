@@ -3,8 +3,12 @@
 //导入vue包
 import Vue from 'vue';
 // 导入vue-router包
-import VueResource from 'vue-router'
+import VueRouter from 'vue-router'
 // 在vue实例中安装路由
+Vue.use(VueRouter)
+// 导入vue-resources包
+import VueResource from 'vue-resource'
+// 安装 vue-resource
 Vue.use(VueResource)
 
 // 导入mui的css样式
@@ -16,6 +20,10 @@ import './lib/mui/css/icons-extra.css'
 import { Header } from 'mint-ui';
 // 包Mint-UI 中的组件 注册到vue实例中
 Vue.component(Header.name, Header);
+// 轮播组件
+import { Swipe, SwipeItem } from 'mint-ui';
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
 
 // 导入App.vue组件
