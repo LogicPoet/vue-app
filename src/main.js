@@ -2,6 +2,10 @@
 
 //导入vue包
 import Vue from 'vue';
+// 导入vue-router包
+import VueResource from 'vue-router'
+// 在vue实例中安装路由
+Vue.use(VueResource)
 
 // 导入mui的css样式
 import './lib/mui/css/mui.min.css'
@@ -17,8 +21,12 @@ Vue.component(Header.name, Header);
 // 导入App.vue组件
 import app from './APP.vue'
 
+// 导入router.js路由模块
+import router from './router.js'
+
 var vm=new Vue({
     el:'#app',
     // 渲染，将app组件放入到页面中
-    render:c=>c(app)
+    render:c=>c(app),
+    router // 挂载路由对象到 VM 实例上
 })
