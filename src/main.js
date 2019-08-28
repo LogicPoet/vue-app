@@ -5,6 +5,8 @@ import Vue from 'vue';
 
 // 导入mui的css样式
 import './lib/mui/css/mui.min.css'
+// 导入图标依赖的css样式
+import './lib/mui/css/icons-extra.css'
 
 // 按需导入 Mint-UI 中的组件   
 import { Header } from 'mint-ui';
