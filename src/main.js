@@ -10,6 +10,14 @@ Vue.use(VueRouter)
 import VueResource from 'vue-resource'
 // 安装 vue-resource
 Vue.use(VueResource)
+// 配置默认的请求根路径
+Vue.http.options.root = 'http://www.liulongbin.top:3005/';
+
+// 导入时间格式化插件
+import moment from 'moment'
+Vue.filter('dateFormat',(dateStr,pattern='YYYY-MM-DD HH:mm:ss')=>{
+    return moment(dateStr).format(pattern);
+})
 
 // 导入mui的css样式
 import './lib/mui/css/mui.min.css'

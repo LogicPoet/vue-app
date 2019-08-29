@@ -42,7 +42,9 @@
 <style lang="scss" scoped>
 // 防止顶端固定标题挡住中间的区域
 .app-container {
+  //放置上下遮挡
   padding-top: 40px;
+  padding-bottom: 50px;
   overflow-x: hidden;//隐藏组件切换时出现的横向滚动条
 }
 
