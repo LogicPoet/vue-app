@@ -1,19 +1,26 @@
 <template>
   <div class="newsinfo-container">
+    <!-- 大标题 -->
     <h3 class="title">{{newsInfo.title}}</h3>
+    <!-- 子标题 -->
     <p class="subtitle">
         <span>发布时间：{{newsInfo.add_time|dateFormat}}</span>
         <span>点击：{{newsInfo.click}}次</span>
     </p>
 
     <hr>
-
+    <!-- 内容区域 -->
     <div class="content" v-html="newsInfo.content"></div>
+
+    <!-- 评论子组件区域 -->
+    <comment-box :id="id"></comment-box>
   </div>
 </template>
 
 <script>
-import {Toast} from 'mint-ui'
+import {Toast} from 'mint-ui';
+// 1. 导入 评论子组件
+import comment from "../subcomponents/comment.vue";
 
 export default {
   data() {
@@ -36,6 +43,10 @@ export default {
           })
       }
   },
+  components:{
+    // 用来注册子组件的节点
+    "comment-box": comment
+  }
 };
 </script>
 

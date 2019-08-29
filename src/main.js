@@ -12,6 +12,8 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // 配置默认的请求根路径
 Vue.http.options.root = 'http://www.liulongbin.top:3005/';
+// 配置全局post发送数据的格式
+Vue.http.options.emulateJSON = true;
 
 // 导入时间格式化插件
 import moment from 'moment'
@@ -32,6 +34,9 @@ Vue.component(Header.name, Header);
 import { Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+// 按钮组件
+import { Button } from 'mint-ui';
+Vue.component(Button.name, Button);
 
 
 // 导入App.vue组件
