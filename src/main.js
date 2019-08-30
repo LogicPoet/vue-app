@@ -27,16 +27,16 @@ import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 
 // 按需导入 Mint-UI 中的组件   
-import { Header } from 'mint-ui';
+import { Header ,Swipe, SwipeItem,Button,Lazyload} from 'mint-ui';
 // 包Mint-UI 中的组件 注册到vue实例中
 Vue.component(Header.name, Header);
 // 轮播组件
-import { Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 // 按钮组件
-import { Button } from 'mint-ui';
 Vue.component(Button.name, Button);
+// 懒加载
+Vue.use(Lazyload);
 
 
 // 导入App.vue组件
