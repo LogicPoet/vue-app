@@ -8,9 +8,7 @@
       >
         <div class="mui-scroll">
           <a
-            :class="['mui-control-item', items.id==0?'mui-active':'']"
-            v-for="items in cates"
-            :key="items.id"
+            :class="['mui-control-item', items.id==0?'mui-active':'']" v-for="items in cates" :key="items.id" @tap="getPhotoListByCateId(items.id)"
           >{{items.title}}</a>
         </div>
       </div>
@@ -93,7 +91,7 @@ export default {
     background-color: #ccc; //图片背景
     text-align: center; //内容居中
     margin-bottom: 10px; //隔开每个图片
-    box-shadow: 0 0 9px #999;//图片阴影效果
+    box-shadow: 0 0 9px #999; //图片阴影效果
     position: relative;
     img {
       // 图片填满容器
