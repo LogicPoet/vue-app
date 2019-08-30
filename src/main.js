@@ -14,6 +14,9 @@ Vue.use(VueResource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005/';
 // 配置全局post发送数据的格式
 Vue.http.options.emulateJSON = true;
+// 缩略图插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 
 // 导入时间格式化插件
 import moment from 'moment'

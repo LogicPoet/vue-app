@@ -18,14 +18,14 @@
 
     <!-- 图片列表区域  -->
     <ul class="photo-list">
-      <li v-for="item in list" :key="item.id">
+      <router-link v-for="item in list" :key="item.id" :to="'/home/photoInfo/'+item.id" tag="li">
         <img v-lazy="item.img_url" />
         <!-- 图片的介绍文字 -->
         <div class="info">
           <h1 class="info-title">{{ item.title }}</h1>
           <div class="info-body">{{ item.zhaiyao }}</div>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -93,7 +93,7 @@ export default {
     background-color: #ccc; //图片背景
     text-align: center; //内容居中
     margin-bottom: 10px; //隔开每个图片
-    box-shadow: 0 0 9px #999;
+    box-shadow: 0 0 9px #999;//图片阴影效果
     position: relative;
     img {
       // 图片填满容器
