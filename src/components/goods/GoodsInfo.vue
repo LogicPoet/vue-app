@@ -114,8 +114,18 @@ export default {
     goComment(id){//编程式路由
         this.$router.push({ name: "goodsComment", params: { id } });
     },
-    addToShopCar() {// 添加到购物车
+    addToShopCar(id) {// 添加到购物车
       this.ballFlag = !this.ballFlag;
+      // 1.获取子组件传过来的购买数量
+      // 2.将要购买的的属性拼成一个对象
+      // 3.id、count、price、selected四个属性
+      var goodsInfo={
+        id:this.id,
+        count:this.selectedCount,
+        price:this.goodsInfo.sell_price,
+        selected:true
+      };
+      this.$store.commit('addToCar',goodsInfo);
     },
     // 小球动画
     beforeEnter(el){//开始之前
