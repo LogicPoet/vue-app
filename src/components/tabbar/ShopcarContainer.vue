@@ -5,7 +5,10 @@
       <div class="mui-card" v-for="(item,i) in goodslist" :key="item.id">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <mt-switch v-model="$store.getters.getGoodsSelected[item.id]" @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"></mt-switch>
+            <mt-switch
+              v-model="$store.getters.getGoodsSelected[item.id]"
+              @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"
+            ></mt-switch>
             <img :src="item.thumb_path" />
             <div class="info">
               <h1>{{ item.title }}</h1>
@@ -24,22 +27,25 @@
 
     <!-- 结算区域 -->
     <div class="mui-card">
-				<div class="mui-card-content">
-					<div class="mui-card-content-inner jiesuan">
-						<div class="left">
-              <p>总计（不含运费）</p>
-              <p>已勾选商品 <span class="red">{{ $store.getters.getGoodsCountAndAmount.count }}</span> 件， 总价 <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span></p>
-            </div>
-             <mt-button type="danger">去结算</mt-button>
-					</div>
-				</div>
-			</div>
-      <p>{{ $store.getters.getGoodsSelected }}</p>
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner jiesuan">
+          <div class="left">
+            <p>总计（不含运费）</p>
+            <p>
+              已勾选商品
+              <span class="red">{{ $store.getters.getGoodsCountAndAmount.count }}</span> 件， 总价
+              <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span>
+            </p>
+          </div>
+          <mt-button type="danger">去结算</mt-button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import numbox from '../subcomponents/shopcar_numbox.vue'
+import numbox from "../subcomponents/shopcar_numbox.vue";
 
 export default {
   data() {
@@ -51,7 +57,8 @@ export default {
     this.getGoodsList();
   },
   methods: {
-    getGoodsList() {//获取购物车的商品列表
+    getGoodsList() {
+      //获取购物车的商品列表
       // 1. 获取到 store 中所有的商品的Id，然后拼接出一个 用逗号分隔的 字符串
       var idArr = [];
       this.$store.state.car.forEach(item => idArr.push(item.id));
@@ -67,20 +74,22 @@ export default {
             this.goodslist = result.body.message;
           }
         });
-        console.log(this.goodslist);
+      console.log(this.goodslist);
     },
-    selectedChanged(id, val) {//同步滑块开关状态
+    selectedChanged(id, val) {
+      //同步滑块开关状态
       // 每当点击开关，把最新的 快关状态，同步到 store 中
       // console.log(id + " --- " + val);
       this.$store.commit("updateGoodsSelected", { id, selected: val });
     },
-        remove(id, index) {//删除一个商品
+    remove(id, index) {
+      //删除一个商品
       // 点击删除，把商品从 store 中根据 传递的 Id 删除，同时，把 当前组件中的 goodslist 中，对应要删除的那个商品，使用 index 来删除
       this.goodslist.splice(index, 1);
       this.$store.commit("removeFormCar", id);
-    },
+    }
   },
-  components:{
+  components: {
     numbox
   }
 };
@@ -88,18 +97,18 @@ export default {
 
 <style lang="scss" scoped>
 .shopcar-container {
-  background-color: #eee;//背景色
-  overflow: hidden;//去除顶端空白
+  background-color: #eee; //背景色
+  overflow: hidden; //去除顶端空白
   .goods-list {
     .mui-card-content-inner {
-      display: flex;//横向布局
-      align-items: center;//上下居中
+      display: flex; //横向布局
+      align-items: center; //上下居中
     }
     img {
-      width: 60px;//设置图片大小
+      width: 60px; //设置图片大小
     }
     h1 {
-      font-size: 13px;//主题字体的大小
+      font-size: 13px; //主题字体的大小
     }
     .info {
       display: flex;
