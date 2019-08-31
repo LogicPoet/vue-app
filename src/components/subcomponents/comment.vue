@@ -84,7 +84,7 @@ export default {
         })
     }
   },
-  props: ["id"]
+  props: ["id"]//需要父组件传过来的数据
 };
 </script>
 
