@@ -1,11 +1,7 @@
 <template>
   <div>
     <!-- 轮播 -->
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="(item, index) in lunbotuList" :key="index">
-        <img :src="item.img" alt />
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>
 
     <!-- 6宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -52,6 +48,8 @@
 <script>
 // 导入弹窗组件
 import { Toast } from "mint-ui";
+// 导入轮播图组件
+import swiper from '../subcomponents/swiper.vue'
 
 export default {
   data() {
@@ -63,7 +61,7 @@ export default {
     this.getLunBoTu();
   },
   methods: {
-    getLunBoTu() {
+    getLunBoTu() {//获取轮播图数据
       this.$http
         .get("api/getlunbo")
         .then(result => {
@@ -76,19 +74,14 @@ export default {
           }
         });
     }
+  },
+  components:{//注册轮播图组件
+    swiper
   }
 };
 </script>
 
 <style lang="scss" scoped>
-// 轮播样式
-.mint-swipe {
-  height: 200px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
 
 // 6宫格样式
 .mui-grid-view.mui-grid-9 {

@@ -1,57 +1,55 @@
 <template>
     <div>
         <div class="goods-list">
-            <div class="goods-item">
-                <img src="http://demo.dtcms.net/upload/201504/18/thumb_201504181230434303.jpg" alt="">
-                <h1 class="title">小米（Mi）小米Note 16G双网通版</h1>
+            <!-- 商品列表区域 -->
+            <div class="goods-item" v-for="item in goodslist" :key="item.id" @click="goodsInfo(item.id)">
+                <img :src="item.img_url" alt="">
+                <h1 class="title">{{item.title}}</h1>
                 <div class="info">
                     <p class="price">
-                        <span class="now">￥899</span>
-                        <span class="old">￥999</span>
+                        <span class="now">￥{{item.sell_price}}</span>
+                        <span class="old">￥{{item.market_price}}</span>
                     </p>
                     <p class="sell">
                         <span>热卖中</span>
-                        <span>剩60件</span>
+                        <span>剩{{item.stock_quantity}}件</span>
                     </p>
                 </div>
             </div>
 
-             <div class="goods-item">
-                <img src="http://demo.dtcms.net/upload/201504/18/thumb_201504181230434303.jpg" alt="">
-                <h1 class="title">小米（Mi）小米Note 16G双网通版</h1>
-                <div class="info">
-                    <p class="price">
-                        <span class="now">￥899</span>
-                        <span class="old">￥999</span>
-                    </p>
-                    <p class="sell">
-                        <span>热卖中</span>
-                        <span>剩60件</span>
-                    </p>
-                </div>
-            </div>
-
-             <div class="goods-item">
-                <img src="http://demo.dtcms.net/upload/201504/18/thumb_201504181230434303.jpg" alt="">
-                <h1 class="title">小米（Mi）小米Note 16G双网通版</h1>
-                <div class="info">
-                    <p class="price">
-                        <span class="now">￥899</span>
-                        <span class="old">￥999</span>
-                    </p>
-                    <p class="sell">
-                        <span>热卖中</span>
-                        <span>剩60件</span>
-                    </p>
-                </div>
-            </div>
+            <!-- 加载更多按钮 -->  
+            <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>       
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data() {
+        return {
+            pageindex:1,
+            goodslist:[]
+        }
+    },
+    created() {
+        this.getGoodsList();
+    },
+    methods: {
+        getGoodsList(){//获取商品列表
+            this.$http.get('api/getgoods?pageindex='+this.pageindex).then(result=>{
+                if(result.body.status===0){
+                    this.goodslist=this.goodslist.concat(result.body.message);
+                }
+            })
+        },
+        getMore(){//获取更多商品列表
+            this.pageindex++;
+            this.getGoodsList();
+        },
+        goodsInfo(id){//编程式路由跳转
+            this.$router.push({ name: 'goodsInfo', params: { id }})
+        }
+    },
 }
 </script>
 
